@@ -41,7 +41,6 @@ interface IProps  {
           <Droppable droppableId="droppable" isCombineEnabled>
           {(provided) => (<tbody {...provided.droppableProps} ref={provided.innerRef} >
             {dataCompany
-              .slice(startIndex, endIndex)
               .map((company: ICompany, index: number) => (
                   
                 <Draggable key={company.companyName} draggableId={company.companyName} index={index}>
@@ -58,8 +57,9 @@ interface IProps  {
                         <td>{company.sector || "no info"}</td>
                         <td>{dateUpdated(company.updated)}</td>
                 </tr>)}
+                
                 </Draggable>
-              ))}
+              )).slice(startIndex, endIndex)}
           </tbody>
           )}
           </Droppable>
